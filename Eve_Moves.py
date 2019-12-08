@@ -2,32 +2,35 @@ import time
 from adafruit_crickit import crickit 
 
 servos = (crickit.servo_1, crickit.servo_2, crickit.servo_3, crickit.servo_4)
+motor = crickit.dc_motor_1
 
-####THIS SHOULD BE CHANGED BASED ON DEC 4TH SYNC 
-#compost hatch is on pin1 
-#seed out is pin 2
-#grinder is pin 3
-#squirter is pin 4
+#BLADE CONTROLS 
+def Eve_blade_on():
+    print ("blade on")
+    #motor turns on for 5 seconds 
+    #and then turns off
+    servos[1].angle = 200 #we think this is "on" for the continuous motor 
+    ###### TODO will need to figure out how to turn the continuous motor off
 
-######THIS SHOULD BE CHANGED BASED ON DEV 4TH SYNC #########
+def Eve_blade_off(): 
+    print ("blade turning off")
+    servos[1].angle = 90 #TODO whichever angle turns the motor off maybe 180 
 
-#COMPOST HATCH CONTROLS 
-def hatch_open():
-    print ("Hatch opening")
-    servos[1].angle = 120
-    time.sleep(2)
-    
-def hatch_close():
-    print ("Hatch closing")
-    servos[1].angle = 0 
-    time.sleep(1)
-    
-#SEE DISPERSION CONTROLS 
-def seeds_open():
+#SEED DISPERSION CONTROLS 
+def Seed_dispersed():
     print ("Seed dispersion open")
-    servos[2].angle = 90
-
-def seeds_closed():
-    print ("Seed dispersion closed")
-    servos[2].angle = 0 
+    servos[2].angle = 90 #whichever angle will open the hatch 
+    print ("Seed dispersion closing")
+    servos[2].angle = 0 #whichever angle will close the hatch 
+    
+#WATER CONTROLS 
+def Water_on(): 
+    print ("Water on")
+    motor.throttle = 0.5 
+      
+def Water_off(): 
+    print("Water off")
+    motor.throttle = 0.0
+    
+     
 

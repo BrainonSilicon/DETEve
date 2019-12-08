@@ -27,3 +27,9 @@ def Eve_recieved():
 def Eve_guarding(): 
     pixels.fill(RED)
     
+def Eve_planting():
+    pixels.fill(BLUE)
+    
+def Eve_stealth():
+    pixels.fill(OFF)
+    
